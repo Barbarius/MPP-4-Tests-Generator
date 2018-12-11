@@ -26,7 +26,7 @@ namespace ConsoleTestsGenerator
             {
                 // input files
                 List<string> paths = new List<string>();
-                for (int i = 0; i < args.Length - MinArgsAmount + 1; i++)
+                for (int i = 0; i < args.Length - 4; i++)
                 {
                     if (File.Exists(args[i]))
                         paths.Add(args[i]);
@@ -40,7 +40,7 @@ namespace ConsoleTestsGenerator
                 else {
 
                     //output directory
-                    string outputDirectory = args[args.Length - MinArgsAmount + 1];
+                    string outputDirectory = args[args.Length - 4];
                     if (!Directory.Exists(outputDirectory))
                     {
                         Console.WriteLine("Directory not found: " + outputDirectory);

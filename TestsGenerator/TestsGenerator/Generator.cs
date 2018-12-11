@@ -98,7 +98,7 @@ namespace TestsGenerator
 
                 var name = Path.Combine(outputDirectory, className + "Test.cs");
 
-                result.Add(new GeneratedTest(compilationUnit.NormalizeWhitespace().ToFullString(), name));
+                result.Add(new GeneratedTest(name, compilationUnit.NormalizeWhitespace().ToFullString()));
             }
 
             return result;
