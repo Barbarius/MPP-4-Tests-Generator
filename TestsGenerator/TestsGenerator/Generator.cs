@@ -11,7 +11,9 @@ namespace TestsGenerator
     {
         private readonly int readerFilesCount;
         private readonly int writerFilesCount;
+        private readonly int maxTasksCount;
         private readonly FileReader fileReader;
+        private readonly FileWriter fileWriter;
 
         public Task Generate(List<string> paths)
         {
@@ -23,18 +25,28 @@ namespace TestsGenerator
             {
                 MaxDegreeOfParallelism = writerFilesCount
             };
+            ExecutionDataflowBlockOptions maxTasksOptions = new ExecutionDataflowBlockOptions
+            {
+                MaxDegreeOfParallelism = maxTasksCount
+            };
 
             var readerTransformBlock = new TransformBlock<string, Task<string>>(readPath => fileReader.ReadFileAsync(readPath), readerOptions);
+
+            //var writerTransformBlock = new TransformBlock<string, Task<string>>();
+
+            var generatorTransformBlock = new TransformBlock<Task<string>, >();
 
             readerTransformBlock.Complete();
         }
 
-        public Generator(int readerFilesCount, int writerFilesCount)
+        public Generator(int readerFilesCount, int writerFilesCount, int maxTasksCount)
         {
             this.readerFilesCount = readerFilesCount;
             this.writerFilesCount = writerFilesCount;
+            this.maxTasksCount = maxTasksCount;
 
             fileReader = new FileReader();
+            fileWriter = new FileWriter();
         }
     }
 }
