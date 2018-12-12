@@ -9,10 +9,10 @@ namespace TestsGenerator
 {
     class FileWriter
     {
-        public async void WriteFileAsync(Task<List<GeneratedTest>> generatedTests)
+        public async Task WriteFileAsync(List<GeneratedTest> generatedTests)
         {
-            var resultTests = await generatedTests;
-            foreach(var resultTest in resultTests)
+            //var resultTests = await generatedTests;
+            foreach(var resultTest in generatedTests)
             {
                 using (StreamWriter sw = new StreamWriter(resultTest.Name))
                 {

@@ -32,7 +32,7 @@ namespace TestsGeneratorUnitTests
 
             generator.Generate(paths).Wait();
 
-            Thread.Sleep(2000);
+            //Thread.Sleep(2000);
 
             compilationUnit1 = CSharpSyntaxTree.ParseText(File.ReadAllText(Path.Combine(outputDirectory, "FooTest.cs"))).GetCompilationUnitRoot();
             compilationUnit2 = CSharpSyntaxTree.ParseText(File.ReadAllText(Path.Combine(outputDirectory, "IntGeneratorTest.cs"))).GetCompilationUnitRoot();
